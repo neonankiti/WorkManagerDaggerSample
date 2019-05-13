@@ -24,6 +24,7 @@ class BisonApplication : Application() {
         trace.putAttribute("Class", "BisonApplication")
         val format = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
         trace.putAttribute("datetime", format.format(Date()))
+        trace.putAttribute("try_different_process", "false")
         trace.stop()
     }
 }

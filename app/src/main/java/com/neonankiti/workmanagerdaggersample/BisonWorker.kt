@@ -30,6 +30,7 @@ class BisonWorker @AssistedInject constructor(
         trace.putAttribute("Class", "BisonWorker")
         val format = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
         trace.putAttribute("datetime", format.format(Date()))
+        trace.putAttribute("try_different_process", "false")
         trace.stop()
         return Result.success()
     }
