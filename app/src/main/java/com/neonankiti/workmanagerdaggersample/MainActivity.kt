@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance().enqueue(
             OneTimeWorkRequestBuilder<BisonWorker>().build()
         )
-
     }
 }
 
