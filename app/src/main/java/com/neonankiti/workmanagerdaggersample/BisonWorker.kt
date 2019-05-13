@@ -6,8 +6,11 @@ import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
+import com.google.firebase.perf.FirebasePerformance
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -22,6 +25,13 @@ class BisonWorker @AssistedInject constructor(
     override fun doWork(): Result {
         Log.d(TAG, "Hello world!")
         Log.d(TAG, "$repository is injected")
+        val trace = FirebasePerformance.getInstance().newTrace("WorkerExecuted")
+        trace.start()
+        trace.putAttribute("Class", "BisonWorker")
+        val format = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+        trace.putAttribute("datetime", format.format(Date()))
+        trace.putAttribute("try_different_process", "false")
+        trace.stop()
         return Result.success()
     }
 
